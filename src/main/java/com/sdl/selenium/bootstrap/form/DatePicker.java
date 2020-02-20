@@ -1,5 +1,6 @@
 package com.sdl.selenium.bootstrap.form;
 
+import com.sdl.selenium.IDatePicker;
 import com.sdl.selenium.web.SearchType;
 import com.sdl.selenium.web.WebLocator;
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ import java.util.Locale;
  * datePicker.select("19/02/2016");
  * }</pre>
  */
-public class DatePicker extends WebLocator {
+public class DatePicker extends WebLocator implements IDatePicker {
     private static final Logger LOGGER = LoggerFactory.getLogger(DatePicker.class);
 
     private WebLocator input = new WebLocator(this).setClasses("icon-calendar").setInfoMessage("Open Calendar");
@@ -154,5 +155,10 @@ public class DatePicker extends WebLocator {
     public String getDate() {
         WebLocator webLocator = new WebLocator(this).setTag("input");
         return webLocator.getAttribute("value");
+    }
+
+    @Override
+    public boolean setValue(final String date) {
+        throw new UnsupportedOperationException("Not Implemented");
     }
 }

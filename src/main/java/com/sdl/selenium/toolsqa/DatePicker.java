@@ -1,5 +1,6 @@
 package com.sdl.selenium.toolsqa;
 
+import com.sdl.selenium.IDatePicker;
 import com.sdl.selenium.web.SearchType;
 import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.link.WebLink;
@@ -32,7 +33,7 @@ import static java.time.format.TextStyle.FULL;
  * datePicker.select("19/02/2016");
  * }</pre>
  */
-public class DatePicker extends WebLocator {
+public class DatePicker extends WebLocator implements IDatePicker {
     private static final Logger LOGGER = LoggerFactory.getLogger(DatePicker.class);
 
     private LocalDate dateToSelect;

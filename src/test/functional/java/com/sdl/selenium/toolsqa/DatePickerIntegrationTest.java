@@ -1,25 +1,35 @@
-package com.sdl.selenium.toolsqa;
+package functional.java.com.sdl.selenium.toolsqa;
 
+import com.sdl.selenium.IDatePicker;
 import com.sdl.selenium.TestBase;
-import com.sdl.selenium.web.WebLocator;
+import com.sdl.selenium.utils.TestComponent;
+import com.sdl.selenium.utils.TestComponentFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static com.sdl.selenium.utils.TestComponent.COMPONENTS.TOOLSQA;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class DatePickerIntegrationTest extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(DatePickerIntegrationTest.class);
 
-    private WebLocator container = new WebLocator("demo-frame");
-    private DatePicker datePicker = new DatePicker(container, "Date:");
+        private IDatePicker datePicker;
 
-    @BeforeClass
-    public void startTests() {
-        driver.get("https://demoqa.com/datepicker/");
-    }
+        @BeforeClass
+        public void startTests() {
+            TestComponent component = new TestComponent.TestComponentBuilder()
+                    .setComponent(TOOLSQA)
+                    .setLocation("demo-frame")
+                    .setLabel("Date:")
+                    .createTestComponent();
+
+            datePicker = TestComponentFactory.getDatePicker(component);
+
+            driver.get("https://demoqa.com/datepicker/");
+        }
 
     @Test
     public void selectDate() {
